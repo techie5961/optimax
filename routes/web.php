@@ -9,6 +9,8 @@ use App\Http\Middleware\AdminLoggedInMiddleware;
 use App\Http\Controllers\AdminsGetRequestController;
 use App\Http\Controllers\UserPostRequestController;
 use App\Http\Controllers\UsersGetRequestController;
+use App\Http\Middleware\AdminIsLoggedInMiddleware;
+use App\Http\Middleware\UserIsLoggedInMiddleware;
 use App\Http\Middleware\UsersAuthCheckerMiddleware;
 
 
@@ -30,7 +32,8 @@ Route::get('coupon/checker',[
 Route::get('vendors',[
     UsersDashboardController::class,'Vendors'
 ]);
-Route::get('login',[
+Route::middleware([UserIsLoggedInMiddleware::class])->group(function(){
+    Route::get('login',[
     UsersDashboardController::class,'Login'
 ]);
 Route::get('register',[
@@ -39,6 +42,7 @@ Route::get('register',[
 Route::get('register/{ref}',[
     UsersDashboardController::class,'RefRegister'
 ]);
+});
 Route::get('earners/top',[
     UsersDashboardController::class,'TopEarners'
 ]);
@@ -173,9 +177,11 @@ Route::prefix('users')->group(function(){
 // prefix admins
 Route::prefix('admins')->group(function(){
     // auth
-     Route::get('login',[
+    Route::middleware([AdminIsLoggedInMiddleware::class])->group(function(){
+         Route::get('login',[
         AdminsDashboardController::class,'Login'
     ]);
+    });
 
 // dashboard
    Route::middleware([AdminLoggedInMiddleware::class])->group(function(){
@@ -313,6 +319,9 @@ Route::prefix('get')->group(function(){
     ]);
      Route::get('transaction/reject',[
         AdminsGetRequestController::class,'RejectTransaction'
+    ]);
+    Route::get('delete/user',[
+        AdminsGetRequestController::class,'DeleteUser'
     ]);
 
     Route::get('article/delete',[

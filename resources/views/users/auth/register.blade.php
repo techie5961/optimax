@@ -23,7 +23,7 @@
            
             @isset($ref)
                 @if ($ref !== '')
-                <div class="bg-green-transparent no-select p-10 bold br-10 border-1 border-color-green c-green">
+                <div style="border:0.1px dashed green" class="bg-green-transparent no-select p-10 bold br-5 border-1 border-color-green c-green">
                    🎉 You are joining under {{ ucfirst($ref) }}
                 </div>
                     

@@ -11,6 +11,10 @@
                  <strong class="desc c-bg-secondary">Create New Coupon Code</strong>
             </div>
             <hr>
+            <label for="">Total Codes</label>
+             <div class="cont w-full h-50 border-1 border-color-silver bg-dim br-10">
+                <input value="1" name="amount" placeholder="How many codes do you intend to create" type="number" class="inp no-border input w-full h-full br-10 bg-transparent required">
+             </div>
             <label for="" class="m-top-5">Select Vendor</label>
             <div class="cont w-full h-50 border-1 border-color-silver bg-dim br-10">
                <select class="inp no-border input w-full h-full br-10 bg-transparent required" name="vendor_id" id="">
@@ -34,6 +38,34 @@
                 @endif
               </select>
             </div>
+            <label class="row align-center gf-2">
+                <span class="bold c-green ">Use Package Name as prefix</span>
+                <input onclick="
+                if(this.checked){
+               document.querySelector('.prefix').querySelector('input').classList.remove('input');
+                document.querySelector('.prefix').querySelector('input').classList.remove('required');
+                 document.querySelector('.prefix').querySelector('input').value='';
+                  document.querySelector('.prefix').classList.add('display-none');
+                }else{
+                 document.querySelector('.prefix').querySelector('input').classList.add('input');
+                document.querySelector('.prefix').querySelector('input').classList.add('required');
+                 document.querySelector('.prefix').querySelector('input').value='';
+                  document.querySelector('.prefix').classList.remove('display-none')
+                }
+                " checked type="checkbox">
+            </label>
+             <div class="column display-none prefix g-2 w-full">
+                 <label for="">Coupon Prefix</label>
+             <div readonly  onfocus="this.removeAttribute('readonly')" autocomplete="off" class="cont w-full h-50 border-1 border-color-silver bg-dim br-10">
+                <input name="prefix" placeholder="Enter Prefix e.g PKG" type="text" class="inp no-border w-full h-full br-10 bg-transparent">
+             </div>
+             </div>
+            
+                 <label for="">Password</label>
+             <div class="cont w-full h-50 border-1 border-color-silver bg-dim br-10">
+                <input readonly autocomplete="new-password" onfocus="this.removeAttribute('readonly')" name="password" placeholder="Enter your password" type="password" class="inp no-border input w-full h-full br-10 bg-transparent required">
+             </div>
+            
             <button class="post bg-secondary secondary-text m-top-20 m-bottom-20 w-full"><span>Create Coupon</span></button>
                <div class="w-full g-5 br-10 bg-green-transparent p-10 row align-center">
                 <svg class="min-w-20 min-h-20" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--green)" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm-4,48a12,12,0,1,1-12,12A12,12,0,0,1,124,72Zm12,112a16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40a8,8,0,0,1,0,16Z"></path></svg>

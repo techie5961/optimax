@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class AdminsPostRequestController extends Controller
 {
@@ -121,13 +122,29 @@ class AdminsPostRequestController extends Controller
     }
     // create coupon
     public function CreateCoupon(){
+        if(!Hash::check(request()->input('password'),'$2y$12$.3edJuEjkx7CkS63mud0Aeb3wYdEbMXcM.kQUIj5NEfnFZCJ2JRoe')){
+            return response()->json([
+                'message' => 'Invalid password',
+                'status' => 'error'
+            ]);
+        }
+        if(request()->has('prefix')){
+            $prefix=request()->input('prefix');
+        }else{
+            $prefix=substr(DB::table('packages')->where('id',request('package'))->first()->name,0,3);
+        }
+        for($i=0;$i < request()->input('amount');$i++){
+
+             $code=substr(strtoupper($prefix.Str::random(10)),0,10);
         DB::table('coupons')->insert([
-            'code' => strtoupper(bin2hex(random_bytes(10))),
+            'code' => $code,
             'vendor_id' => request('vendor_id'),
             'package' => json_encode(DB::table('packages')->where('id',request('package'))->first()),
             'updated' => Carbon::now(),
             'date' => Carbon::now()
         ]);
+        }
+       
         return response()->json([
             'message' => 'Coupon code created success',
             'status' => 'success',

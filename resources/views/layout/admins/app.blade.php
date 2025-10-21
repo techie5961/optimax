@@ -110,9 +110,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   
     " class="pos-fixed mobile-display-none high top-0 left-0 right-0 bottom-0 bg-black-transparent average">
         <section onclick="event.stopPropagation()" class="nav transition-ease-half overflow-auto column bg-white h-full w-semi-full">
-            <div class="nav-profile pos-sticky stick-top w-full column g-10 p-10">
-                <img src="{{ asset('images/avatar.svg') }}" alt="" class="h-70 w-70 circle border-4 border-color-primary box-shadow">
-           <strong class="desc">{{ ucfirst(Auth::guard('admins')->user()->tag) }}</strong>
+            <div class="nav-profile pos-sticky c-white stick-top w-full column g-10 p-10">
+                <img src="{{ asset('images/avatar.jpeg') }}" alt="" class="h-70 w-70 circle border-4 border-color-primary box-shadow">
+           <strong class="desc" style="font-family: titan one;font-weight:100">{{ ucfirst(Auth::guard('admins')->user()->tag) }}</strong>
             </div>
             <div class="nav-links flex-auto bg-inherit w-full column">
                 <a class="p-10 w-full row g-5 no-u c-black" href="{{ url('admins/dashboard') }}">
@@ -333,7 +333,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
                  
                  
 
-                 <a class="p-10 pos-sticky m-top-auto stick-bottom bg-inherit w-full row g-5 no-u c-red" href="">
+                 <a class="p-10 pos-sticky m-top-auto stick-bottom bg-inherit w-full row g-5 no-u c-red" href="{{ url('admins/logout') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="CurrentColor" viewBox="0 0 256 256"><path d="M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z"></path></svg>
 
 

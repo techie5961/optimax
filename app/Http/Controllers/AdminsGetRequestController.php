@@ -157,4 +157,14 @@ class AdminsGetRequestController extends Controller
             ]);
         }
     }
+    public function DeleteUser(){
+        DB::table('users')->where('id',request()->input('id'))->delete();
+        DB::table('transactions')->where('user_id',request()->input('id'))->delete();
+         DB::table('logs')->where('user_id',request()->input('id'))->delete();
+          DB::table('sessions')->where('user_id',request()->input('id'))->delete();
+           DB::table('task_proofs')->where('user_id',request()->input('id'))->delete();
+            DB::table('articles')->where('user_id',request()->input('id'))->delete();
+            return redirect()->to('admins/users/all');
+          
+    }
 }

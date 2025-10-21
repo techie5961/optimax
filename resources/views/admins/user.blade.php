@@ -118,8 +118,20 @@
                         <strong class="font-1 c-green">{{ $data->bank->account_number ?? ''  }} | {{ $data->bank->bank_name ?? ''  }} | {{ $data->bank->account_name ?? ''  }}</strong>
                     @endif
                 </div>
-              <div class="w-full g-10 grid grid-3 place-center ">
+                   <div class="w-full g-10 grid grid-3 place-center ">
+                 <button onclick="
+                let data=`
+                <svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='red' viewBox='0 0 256 256'><path d='M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM112,168a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm0-120H96V40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8Z'></path></svg>
 
+                Are you sure you want to delete this user?
+                <br>
+                 <span class='c-red bold'>The user and his/her associates on the platform like transactions,notifications,logs etc would be erased from the database</span>
+          <br>
+                 This action cannot be undone.
+                  <button onclick='window.location.href=&quot;{{ url('admins/get/delete/user?id='.$data->id.'') }}&quot;' class='btn-red-3d m-top-10 w-full clip-5 br-'>Yes! Delete User</button>
+                `;
+                PopUp(data)" class="clip-5 text-primary br-5 h-full w-full btn-red-3d c-white">Delete User</button>
+              
                  @if ($data->status == 'active')
                       <button onclick="window.location.href='{{ url('admins/ban/user?id='.$data->id.'&status='.$data->status.'') }}'" class="btn-green-3d c-white clip-5 br-5 h-full w-full">Ban User</button>
               

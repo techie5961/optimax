@@ -57,9 +57,12 @@
 
         </div>
         <strong style="font-size:2rem">&#8358;{{ number_format($all_time,2) }}</strong>
-        <div class="w-fit no-select pointer clip-5 br-5 bg p-10 row align-center">
+       <div class="row align-center w-full g-10 space-between">
+         <div onclick="spa(event,'{{ url('users/transactions') }}')" class="w-fit no-select pointer clip-5 br-5 bg p-10 row align-center">
             View Transactions
         </div>
+        <span style="font-family:titan one;font-weight:100;font-size:1rem;color:var(--primary)">Hello 👋, {{ ucfirst(substr(Auth::guard('users')->user()->username,0,10)) }}{{ strlen(Auth::guard('users')->user()->username) > 4 ? '...' : '' }}</span>
+       </div>
       </div>
       <div class="w-full br-10 row align-center g-10 no-scrollbar overflow-auto max-w-full">
            {{-- ACTIVITIES BALANCE --}}

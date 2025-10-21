@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminsDashboardController extends Controller
 {
@@ -36,6 +37,7 @@ class AdminsDashboardController extends Controller
     }
     // add coupon
     public function AddCoupon(){
+    
         return view('admins.coupons.add',[
             'vendors' => DB::table('users')->where('type','vendor')->where('status','active')->get(),
             'packages' => DB::table('packages')->where('cost','>','0')->orderBy('cost','asc')->where('status','active')->get()

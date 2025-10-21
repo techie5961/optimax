@@ -47,7 +47,10 @@ class UserPostRequestController extends Controller
         $welcome_bonus=$package->cashback;
        }else{
         $package=DB::table('packages')->where('id',request()->input('package'))->first();
+       
        }
+        $usr_pkg=$package;
+        
      DB::table('notifications')->insert([
         'message' => '<strong class="font-1 c-green">'.strtolower(str_replace('-','_',request()->input('username'))).'</strong> Just registered an account',
         'status' => 'unread',
@@ -79,6 +82,7 @@ class UserPostRequestController extends Controller
         if(request()->input('ref') !== ''){
               $ref=DB::table('users')->where('username',request()->input('ref'))->first();
               $package=json_decode($ref->package);
+              $package->subordinate=$usr_pkg->subordinate;
             //   direct
               DB::table('users')->where('id',$ref->id)->update([
                 'affiliate_balance' => DB::raw('affiliate_balance + '.$package->subordinate.'')
@@ -110,6 +114,7 @@ class UserPostRequestController extends Controller
         if(($ref->ref ?? '') !== ''){
             $indirect=DB::table('users')->where('username',$ref->ref)->first();
             $pkg=json_decode($indirect->package);
+            $pkg->first_indirect=$usr_pkg->first_indirect;
             DB::table('users')->where('id',$indirect->id)->update([
                 'affiliate_balance' => DB::raw('affiliate_balance + '.$pkg->first_indirect.'')
             ]);

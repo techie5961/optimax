@@ -22,8 +22,8 @@ class UsersDashboardController extends Controller
      // referral register
     public function RefRegister($ref){
         $username='';
-       if( DB::table('users')->where('uniqid',$ref)->exists()){
-         $username=DB::table('users')->where('uniqid',$ref)->first()->username;
+       if( DB::table('users')->where('username',$ref)->exists()){
+         $username=DB::table('users')->where('username',$ref)->first()->username;
        }
         return view('users.auth.register',[
             'pkg' => DB::table('packages')->where('status','active')->orderBy('date','desc')->get(),
