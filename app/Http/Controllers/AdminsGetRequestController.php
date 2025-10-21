@@ -158,6 +158,9 @@ class AdminsGetRequestController extends Controller
         }
     }
     public function DeleteUser(){
+        DB::table('users')->where('ref',request()->input('username'))->update([
+            'ref' => null
+        ]);
         DB::table('users')->where('id',request()->input('id'))->delete();
         DB::table('transactions')->where('user_id',request()->input('id'))->delete();
          DB::table('logs')->where('user_id',request()->input('id'))->delete();
