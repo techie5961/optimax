@@ -355,7 +355,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   </div>
 </section>
     </main>
-    <footer class="w-full p-10 column align-center text-center bg c-white">
+    <footer class="w-full display-none p-10 column align-center text-center bg c-white">
         <span>&copy;2025 {{ config('app.name') }} Admin Dashboard</span>
         <span>Built & Designed by <a class="c-primary" href="https://wa.me/+2349013350351">Techie Innovations</a></span>
     </footer>

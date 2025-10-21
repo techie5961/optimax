@@ -16,9 +16,9 @@ class AdminIsLoggedInMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-           if(Auth::guard('admins')->check()){
-            return redirect('admins/dashboard');
-        }
+        //    if(Auth::guard('admins')->check()){
+        //     return redirect('admins/dashboard');
+        // }
         return $next($request);
     }
 }

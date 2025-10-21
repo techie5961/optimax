@@ -16,9 +16,9 @@ class UserIsLoggedInMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::guard('users')->check()){
-            return redirect('users/dashboard');
-        }
+        // if(Auth::guard('users')->check()){
+        //     return redirect('users/dashboard');
+        // }
         return $next($request);
     }
 }

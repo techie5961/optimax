@@ -13,7 +13,8 @@ class UserPostRequestController extends Controller
     // register
     public function Register(){
         $welcome_bonus = 0;
-        if(DB::table('users')->where('username',strtolower(str_replace('-','_',request()->input('username'))))->exists()){
+        $username=strtolower(str_replace([' ','-'],'',request('username')));
+        if(DB::table('users')->where('username',$username)->exists()){
             return response()->json([
                 'message' => 'Username has been taken',
                 'status' => 'error'
@@ -52,7 +53,7 @@ class UserPostRequestController extends Controller
         $usr_pkg=$package;
         
      DB::table('notifications')->insert([
-        'message' => '<strong class="font-1 c-green">'.strtolower(str_replace('-','_',request()->input('username'))).'</strong> Just registered an account',
+        'message' => '<strong class="font-1 c-green">'.$username.'</strong> Just registered an account',
         'status' => 'unread',
         'date' => Carbon::now(),
         'updated' => Carbon::now()
@@ -61,7 +62,7 @@ class UserPostRequestController extends Controller
         'uniqid' => strtoupper(uniqid('USR')),
         'name' => request()->input('name'),
         'email' => request()->input('email'),
-        'username' => strtolower(str_replace('-','_',request()->input('username'))),
+        'username' => $username,
         'phone' => request()->input('phone') ?? null,
         'package' => json_encode($package ?? []),
         'coupon' => request()->input('coupon') ?? null,
