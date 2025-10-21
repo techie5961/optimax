@@ -35,7 +35,12 @@ class AdminsPostRequestController extends Controller
     }
     // add package
     public function AddPackage(){
-       DB::table('packages')->insert([
+     $name=time().'.'.request()->file('banner')->getClientOriginalExtension();
+
+      if(request()->file('banner')->move(public_path('packages'),$name)){
+         DB::table('packages')->insert([
+        'banner' => $name,
+        'type' => request()->input('type'),
         'name' => request('name'),
         'cost' => request('fee'),
         'cashback' => request('cashback') ?? null,
@@ -55,10 +60,19 @@ class AdminsPostRequestController extends Controller
         'status' => 'success',
         'url' => url('admins/packages/manage')
         ]);
+      }
     }
      // edit package
     public function EditPackage(){
+      
+        if(request()->file('banner') !== null){
+ $name=time().'.'.request()->file('banner')->getClientOriginalExtension();
+
+      if(request()->file('banner')->move(public_path('packages'),$name)){
+          
        DB::table('packages')->where('id',request()->input('id'))->update([
+        'banner' => $name,
+        'type' => request()->input('type'),
         'name' => request('name'),
         'cost' => request('fee'),
         'cashback' => request('cashback') ?? null,
@@ -78,6 +92,32 @@ class AdminsPostRequestController extends Controller
         'status' => 'success',
         'url' => url('admins/packages/manage')
         ]);
+      }
+        }else{
+              
+       DB::table('packages')->where('id',request()->input('id'))->update([
+        'type' => request()->input('type'),
+        'name' => request('name'),
+        'cost' => request('fee'),
+        'cashback' => request('cashback') ?? null,
+        'subordinate' => request('subordinate') ?? null,
+        'first_indirect' => request('first_indirect') ?? null,
+        'free_data' => request('free_data') ?? null,
+        'article_writing' => request('article_writing') ?? null,
+        'earning_per_click' => request('earning_per_click') ?? null,
+        'tiktok_monitizing' => request('tiktok_minitizing') ?? null,
+        'casino_game' => request('casino_game') ?? null,
+        'daily_advert' => request('daily_advert') ?? null,
+        'updated' => Carbon::now(),
+      
+       ]);
+       return response()->json([
+        'message' => 'Package edited successfully',
+        'status' => 'success',
+        'url' => url('admins/packages/manage')
+        ]);
+        }
+      
     }
     // create coupon
     public function CreateCoupon(){

@@ -18,6 +18,7 @@ class UsersGetRequestController extends Controller
             'updated' => Carbon::now()
         ]);
         DB::table('transactions')->insert([
+             'uniqid' => strtoupper(uniqid('trx')),
             'user_id' => Auth::guard('users')->user()->id,
             'type' => 'Task Reward',
             'class' => 'credit',
@@ -73,6 +74,7 @@ class UsersGetRequestController extends Controller
             'updated' => Carbon::now()
         ]);
        DB::table('transactions')->insert([
+         'uniqid' => strtoupper(uniqid('trx')),
             'user_id' => Auth::guard('users')->user()->id,
             'type' => 'Spin Reward',
             'class' => 'credit',
@@ -203,6 +205,7 @@ class UsersGetRequestController extends Controller
             'activities_balance' => DB::raw('activities_balance - '.$plans[request()->input('amount')].'')
         ]);
           DB::table('transactions')->insert([
+             'uniqid' => strtoupper(uniqid('trx')),
             'user_id' => Auth::guard('users')->user()->id,
             'type' => 'Airtime Topup',
             'class' => 'debit',
@@ -332,6 +335,7 @@ class UsersGetRequestController extends Controller
             'activities_balance' => DB::raw('activities_balance - '.$plans[request()->input('amount')].'')
         ]);
           DB::table('transactions')->insert([
+             'uniqid' => strtoupper(uniqid('trx')),
             'user_id' => Auth::guard('users')->user()->id,
             'type' => 'Data Bundle',
             'class' => 'debit',

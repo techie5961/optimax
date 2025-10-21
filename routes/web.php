@@ -19,7 +19,16 @@ Route::get('hash',function(){
 });
 
 Route::get('/',[
-    UsersDashboardController::class,'Login'
+    UsersDashboardController::class,'Index'
+]);
+Route::get('coupon',[
+    UsersDashboardController::class,'Vendors'
+]);
+Route::get('coupon/checker',[
+    UsersDashboardController::class,'CouponChecker'
+]);
+Route::get('vendors',[
+    UsersDashboardController::class,'Vendors'
 ]);
 Route::get('login',[
     UsersDashboardController::class,'Login'
@@ -30,6 +39,18 @@ Route::get('register',[
 Route::get('register/{ref}',[
     UsersDashboardController::class,'RefRegister'
 ]);
+Route::get('earners/top',[
+    UsersDashboardController::class,'TopEarners'
+]);
+Route::get('about',[
+    UsersDashboardController::class,'AboutUs'
+]);
+Route::get('terms',[
+    UsersDashboardController::class,'Terms'
+]);
+// Route::get('package/list',[
+//     UsersDashboardController::class,'PackageList'
+// ]);
 
 
 //  prefix users
@@ -38,14 +59,18 @@ Route::prefix('users')->group(function(){
      Route::get('dashboard',[
         UsersDashboardController::class,'Dashboard'
     ]);
+     Route::get('vendor/dashboard',[
+        UsersDashboardController::class,'VendorDashboard'
+    ]);
     Route::get('tasks',[
         UsersDashboardController::class,'Tasks'
     ]);
-    Route::get('spin',[
-        UsersDashboardController::class,'Spin'
-    ]);
+    
     Route::get('transactions',[
         UsersDashboardController::class,'Transactions'
+    ]);
+    Route::get('transaction/receipt',[
+        UsersDashboardController::class,'TransactionReceipt'
     ]);
     Route::get('more',[
         UsersDashboardController::class,'Profile'
@@ -56,29 +81,33 @@ Route::prefix('users')->group(function(){
     Route::get('withdraw',[
         UsersDashboardController::class,'Withdraw'
     ]);
-    Route::get('invite',[
-        UsersDashboardController::class,'Invite'
-    ]);
+   
     Route::get('team',[
         UsersDashboardController::class,'Team'
     ]);
     Route::get('password/update',[
         UsersDashboardController::class,'Password'
     ]);
-    Route::get('articles/write',[
-        UsersDashboardController::class,'WriteArticle'
+     Route::get('profile/photo/update',[
+        UsersDashboardController::class,'ProfilePhoto'
     ]);
-    Route::get('articles/read',[
-        UsersDashboardController::class,'ReadArticles'
-    ]);
-    Route::get('article/read/more',[
-        UsersDashboardController::class,'ReadMore'
-    ]);
+    // Route::get('articles/write',[
+    //     UsersDashboardController::class,'WriteArticle'
+    // ]);
+    // Route::get('articles/read',[
+    //     UsersDashboardController::class,'ReadArticles'
+    // ]);
+    // Route::get('article/read/more',[
+    //     UsersDashboardController::class,'ReadMore'
+    // ]);
     Route::get('airtime/topup',[
         UsersDashboardController::class,'AirtimeTopup'
     ]);
      Route::get('data/topup',[
         UsersDashboardController::class,'DataTopup'
+    ]);
+    Route::get('logout',[
+        UsersDashboardController::class,'Logout'
     ]);
 
 
@@ -91,9 +120,7 @@ Route::prefix('users')->group(function(){
     Route::get('claim/task/reward',[
         UsersGetRequestController::class,'ClaimTaskReward'
     ]);
-    Route::get('spin/grant/reward',[
-        UsersGetRequestController::class,'SpinReward'
-    ]);
+   
     Route::get('bank/auto/verify',[
         UsersGetRequestController::class,'BankAutoVerify'
     ]);
@@ -125,8 +152,14 @@ Route::prefix('users')->group(function(){
         Route::post('update/password/process',[
             UserPostRequestController::class,'UpdatePassword'
         ]);
+         Route::post('update/profile/photo/process',[
+            UserPostRequestController::class,'UpdatePhoto'
+        ]);
         Route::post('publish/article/process',[
             UserPostRequestController::class,'PublishArticle'
+        ]);
+        Route::post('coupon/checker/process',[
+            UserPostRequestController::class,'CouponChecker'
         ]);
     });
 });

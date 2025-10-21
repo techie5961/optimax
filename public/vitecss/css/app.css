@@ -10,25 +10,25 @@
     /* darker primary color */
      --primary-dark:#3b3302;
      /* secondary color */
-    --secondary:#d40c64;
+    --secondary:orangered;
     /* secondary light */
-    --secondary-light:rgba(212, 12, 100, 0.1);
+    --secondary-light:rgba(255, 68, 0, 0.1);
     /* secondary dark */
-    --secondary-dark:#2a0012;
+    --secondary-dark:rgb(36, 10, 1);
     /* secondary text color */
     --secondary-text:white;
     /* primary font */
     --font:'dm sans';
     /* background color */
-    --bg:#490422;
+    --bg:#a31400;
     /* bg secondary */
-    --bg-secondary:#2a0012;
+    --bg-secondary:orangered;
     /* bg secondary dark */
-    --bg-secondary-dark:#2a0012;
+    --bg-secondary-dark:rgb(36, 10, 1);
      /* bg secondary light */
-    --bg-secondary-light:rgba(148, 9, 69,0.1);
+    --bg-secondary-light:rgba(255, 68, 0, 0.1);
     /* light background color */
-    --bg-light:#88043d;
+    --bg-light:orange;
     /* dark background color */
     --bg-dark:#rgb(59, 3, 27)
     /* text color */
@@ -1699,6 +1699,9 @@ button.post.active .working{
 .font-libertinus-sans{
     font-family: 'libertinus sans';
 }
+.font-bowl{
+    font-family:bowl;
+}
 /* description/heading */
 .desc{
     font-size:1.2rem;
@@ -2740,9 +2743,13 @@ html{
     .pc-grid{
         display:grid;
     }
+    .pc-grid-4{
+    grid-template-columns: repeat(4,1fr);
+}
     .pc-grid-8{
     grid-template-columns: repeat(8,1fr);
 }
+
  .pc-grid-6{
     grid-template-columns: repeat(6,1fr);
 }
