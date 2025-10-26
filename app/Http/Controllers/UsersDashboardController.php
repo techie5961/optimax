@@ -41,7 +41,7 @@ class UsersDashboardController extends Controller
             return $each;
         });
     return view('users.dashboard',[
-        'all_time' => DB::table('transactions')->where('class','credit')->whereNot('type','like','%deposit%')->where('status','success')->where('id',Auth::guard('users')->user()->id)->sum('amount'),
+        'all_time' => DB::table('transactions')->where('class','credit')->whereNot('type','like','%deposit%')->where('status','success')->where('user_id',Auth::guard('users')->user()->id)->sum('amount'),
         'social' => json_decode(DB::table('settings')->where('key','social_settings')->first()->json),
         'transactions' => $transactions,
         'downlines' => DB::table('users')->where('ref',Auth::guard('users')->user()->username)->count()

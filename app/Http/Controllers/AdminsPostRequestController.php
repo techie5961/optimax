@@ -308,6 +308,22 @@ class AdminsPostRequestController extends Controller
             'status' => 'success'
         ]);
     }
+       // update user password
+    public function UpdatePassword(){
+        if(!Hash::check(request('confirm_password'),Hash::make(request('new_password')))){
+           return response()->json([
+            'message' => 'New password & confirm password must be the same',
+            'status' => 'error'
+        ]);  
+        }
+        DB::table('users')->where('id',request()->input('id'))->update([
+           'password' => Hash::make(request()->input('new_password'))
+        ]);
+        return response()->json([
+            'message' => 'User password updated successfully',
+            'status' => 'success'
+        ]);
+    }
     // add article topic
     public function AddArticleTopic(){
         DB::table('article_topics')->insert([

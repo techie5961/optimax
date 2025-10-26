@@ -369,9 +369,13 @@ Route::prefix('get')->group(function(){
          Route::post('debit/user/process',[
             AdminsPostRequestController::class,'DebitUser'
         ]);
+         Route::post('update/account/password/process',[
+            AdminsPostRequestController::class,'UpdatePassword'
+        ]);
         Route::post('add/article/topic/process',[
             AdminsPostRequestController::class,'AddArticleTopic'
         ]);
+
     });
 });
 
